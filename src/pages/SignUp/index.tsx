@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useCallback } from 'react';
 import {
   Image,
   View,
@@ -24,6 +24,10 @@ const SignUp: React.FC = () => {
 
   const navigation = useNavigation();
 
+  const handleSignUp = useCallback((data: object) => {
+    console.log(data);
+  }, []);
+
   return (
     <>
       <KeyboardAvoidingView
@@ -42,7 +46,11 @@ const SignUp: React.FC = () => {
               <Title>Crie sua conta</Title>
             </View>
 
-            <Form ref={formRef} onSubmit={() => {}}>
+            <Form
+              ref={formRef}
+              onSubmit={handleSignUp}
+              style={{ width: '100%' }}
+            >
               <Input name="name" icon="user" placeholder="Nome" />
               <Input name="email" icon="mail" placeholder="E-mail" />
               <Input name="password" icon="lock" placeholder="Senha" />
